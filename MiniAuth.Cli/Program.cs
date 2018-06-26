@@ -8,12 +8,9 @@ namespace MiniAuth.Cli
         {
             try
             {
-                var req = new AppLoginRequest { AppName = args[0], Username = args[1], Password = args[2] };
-                var token = req.GetResponse().Token;
-                Clipboard.Copy(token);
-                Console.WriteLine(token);
+                new AppCommands().Execute(args);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine($"Error: {e.Message}");
             }
