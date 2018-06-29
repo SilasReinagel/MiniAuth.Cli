@@ -1,0 +1,3 @@
+version: 1.0.{build}
+build_script:
+- cmd: "dotnet --info\ndotnet restore \ndotnet build --configuration Release\ndotnet test MiniAuth.Cli.Tests"
