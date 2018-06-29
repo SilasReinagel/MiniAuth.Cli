@@ -4,17 +4,17 @@ using System.Linq;
 
 namespace MiniAuth.Cli
 {
-    public sealed class Commands : ICliCommands
+    public sealed class CliCommands : ICliCommands
     {
         private readonly Dictionary<string, Action<string[]>> _commands;
 
-        public Commands(params ICliCommand[] commands)
+        public CliCommands(params ICliCommand[] commands)
             : this ((IEnumerable<ICliCommand>)commands) {}
         
-        public Commands(IEnumerable<ICliCommand> commands)
+        public CliCommands(IEnumerable<ICliCommand> commands)
             : this(commands.ToDictionary(x => x.Name.ToLowerInvariant(), k => (Action<string[]>)(k.Execute))) {}
         
-        public Commands(Dictionary<string, Action<string[]>> commands)
+        public CliCommands(Dictionary<string, Action<string[]>> commands)
         {
             _commands = commands;
         }
