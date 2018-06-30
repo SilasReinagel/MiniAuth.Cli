@@ -7,6 +7,11 @@ namespace MiniAuth.Cli.Common
     {
         public Dictionary<string, byte[]> Files { get; } = new Dictionary<string, byte[]>(StringComparer.InvariantCultureIgnoreCase);
 
+        public bool Exists(string name)
+        {
+            return Files.ContainsKey(name);
+        }
+
         public byte[] Get(string name)
         {
             return Files[name];

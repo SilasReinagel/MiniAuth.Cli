@@ -1,5 +1,5 @@
 ﻿
-namespace MiniAuth.Cli
+namespace MiniAuth.Cli.Auth
 {
     public sealed class AppLoginResponse
     {

@@ -1,6 +1,6 @@
 ﻿using MiniAuth.Cli.Common;
 
-namespace MiniAuth.Cli
+namespace MiniAuth.Cli.Auth
 {
     public sealed class AppLoginCommand : ICliCommand
     {

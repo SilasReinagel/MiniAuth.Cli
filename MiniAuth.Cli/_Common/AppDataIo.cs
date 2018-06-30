@@ -22,6 +22,8 @@ namespace MiniAuth.Cli.Common
             File.WriteAllBytes(GetPath(name), bytes);
         }
 
+        public bool Exists(string name) => File.Exists(GetPath(name));
+
         public byte[] Get(string name) => File.ReadAllBytes(GetPath(name));
 
         private string GetPath(string name) => Path.Combine(DirName, $"{name}.io");

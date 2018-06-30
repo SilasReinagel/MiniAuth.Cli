@@ -18,8 +18,6 @@ namespace MiniAuth.Cli.Logins
             var password = args[1];
 
             _io.Put("login", new Login(username, password).ToString());
-
-
         }
     }
 }
