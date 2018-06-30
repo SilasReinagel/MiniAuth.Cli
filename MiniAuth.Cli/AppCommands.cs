@@ -5,13 +5,17 @@ namespace MiniAuth.Cli
 {
     public sealed class AppCommands : ICliCommands
     {
-        private readonly ICliCommands _allAppcommands;
+        private readonly ICliCommands _allCommands;
 
-        public AppCommands() : this(new AppLoginCommand(), new SaveLoginCommand()) { }
-        public AppCommands(IConsumer<string> output, IO io) : this(new AppLoginCommand(output), new SaveLoginCommand(io)) { }
-        public AppCommands(AppLoginCommand appLogin, SaveLoginCommand saveLogin) : this(new ICliCommand[] { appLogin, saveLogin }) { }
-        private AppCommands(params ICliCommand[] commands) => _allAppcommands = new CliCommands(commands);
+        public AppCommands() 
+            : this(Output.Current, new AppLoginCommand(), new SaveLoginCommand()) { }
 
-        public void Execute(string name, params string[] args) => _allAppcommands.Execute(name, args);
+        public AppCommands(IConsumer<string> output, IO io) 
+            : this(output, new AppLoginCommand(output), new SaveLoginCommand(io)) { }
+
+        private AppCommands(IConsumer<string> output, params ICliCommand[] commands) 
+            => _allCommands = new CommandsWithHelp(output, commands);
+
+        public void Execute(string name, params string[] args) => _allCommands.Execute(name, args);
     }
 }

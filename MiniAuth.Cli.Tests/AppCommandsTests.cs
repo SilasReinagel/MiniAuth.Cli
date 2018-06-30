@@ -7,7 +7,6 @@ namespace MiniAuth.Cli.Tests
     [TestClass]
     public class AppCommandsTests
     {
-
         private readonly InMemoryOutput _console;
         private readonly InMemoryIo _io;
         private readonly AppCommands _commands;
@@ -37,6 +36,17 @@ namespace MiniAuth.Cli.Tests
             Execute("save integrationtest 123");
 
             Assert.IsTrue(_io.Files.ContainsKey("login"));
+        }
+
+        [TestMethod]
+        public void AppCommands_Help_HelpTextDisplayed()
+        {
+            Execute("help");
+
+            var output = _console.Outputs.Single();
+            Assert.IsTrue(output.Contains("login"));
+            Assert.IsTrue(output.Contains("help"));
+            Assert.IsTrue(output.Contains("save"));
         }
 
         private void Execute(string rawText)
